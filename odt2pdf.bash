@@ -1,21 +1,20 @@
 #!/bin/bash
 
 echo "############################################"
-FILE_DIR="${1:-.}"
-FILE_DEST="${2:-,}"
 
-FILE_DIR="$(realpath "$FILE_DIR")"
-FILE_DEST="$(realpath "$FILE_DEST")"
+ODT_DIR="$(realpath "$1")"
+PDF_DEST_DIR="$(realpath "$2")"
 
-echo "[INFO] current directory: $WORK_DIR"
+echo "[INFO] ODT DIR: $ODT_DIR"
+echo "[INFO] PDF DEST DIR: $PDF_DEST_DIR"
 
 echo "--------------------------------------------"
 
 mkdir -p pdf
-for file in "FILE_DIR"/*.odt; do
+for file in "$ODT_DIR"/*.odt; do
 	if [ -f "$file" ]; then 
         # echo "converting: $file" 
-		libreoffice --headless --convert-to pdf --outdir "$FILE_DEST" "$file"
+		libreoffice --headless --convert-to pdf --outdir "$PDF_DEST_DIR" "$file"
 	fi
 done
 
