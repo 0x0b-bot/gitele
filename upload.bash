@@ -1,5 +1,5 @@
 
-bash odt2pdf.bash . 
+bash odt2pdf.bash odt pdf 
 
 git add .
 git commit -m "zapiski: updated"

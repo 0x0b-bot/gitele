@@ -1,24 +1,21 @@
 #!/bin/bash
 
 echo "############################################"
-WORK_DIR="${1:-.}"
+FILE_DIR="${1:-.}"
+FILE_DEST="${2:-,}"
 
-if [[ ! -d "$WORK_DIR" ]]; then
-    echo "ERROR_ods2pdf: directory does not exist: $WORK_DIR"
-    exit 1
-fi
-
-WORK_DIR="$(realpath "$WORK_DIR")"
+FILE_DIR="$(realpath "$FILE_DIR")"
+FILE_DEST="$(realpath "$FILE_DEST")"
 
 echo "[INFO] current directory: $WORK_DIR"
 
 echo "--------------------------------------------"
 
 mkdir -p pdf
-for file in "$WORK_DIR"/*.odt; do
+for file in "FILE_DIR"/*.odt; do
 	if [ -f "$file" ]; then 
         # echo "converting: $file" 
-		libreoffice --headless --convert-to pdf --outdir pdf $file
+		libreoffice --headless --convert-to pdf --outdir "$FILE_DEST" "$file"
 	fi
 done
 
